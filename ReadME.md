@@ -1,11 +1,11 @@
 
-# 🧨 Minesweepah
+#  Minesweepah
 
 A terminal-based Minesweeper game written in Python for EEE 111. This project features a modular design with a main game loop (`Minesweepah.py`) and a helper module (`PySweepers.py`) that encapsulates board logic, user interaction, and game mechanics.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 | File            | Description                                                                 |
 |-----------------|-----------------------------------------------------------------------------|
@@ -77,7 +77,7 @@ Use the following commands:
 
 ---
 
-## 📌 Notes
+##  Notes
 
 - Coordinates are entered as `x y`, where `x` is the column and `y` is the row.
 - The game uses ASCII art and console prompts for interaction.
@@ -85,7 +85,7 @@ Use the following commands:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 Developed by: Ichi Hiramami for EEE 111 
 
