@@ -49,7 +49,7 @@ Use the following commands:
   Initializes the game board and player board with headers and blank cells. Returns both boards and the setting tuple.
 
 - `generateGameBoard(gB: list, setting: tuple)`  
-  Randomly places bombs and calculates adjacent bomb counts (max 4). Pads all values for display.
+  Randomly places bombs and calculates adjacent bomb counts (max 8). Pads all values for display.
 
 - `customBoardSize()`  
   Prompts user for custom board dimensions and bomb density. Returns a tuple `(rows, columns, bombs_per_row)`.
