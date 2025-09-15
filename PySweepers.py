@@ -72,9 +72,13 @@ def customBoardSize():
     """
     clearConsole()
     while True:
-        y = int(input("Enter Number of Rows (MAX: 99): "))
-        x = int(input("Enter Number of Columns (MAX: 99): "))
-        z = random.randint(1,int(input("Enter Number of Bombs per Row (MUST NOT BE GREATER THAN COLUMN): ")))
+        try:
+            y = int(input("Enter Number of Rows (MAX: 99): "))
+            x = int(input("Enter Number of Columns (MAX: 99): "))
+            z = random.randint(1,int(input("Enter Number of Bombs per Row (MUST NOT BE GREATER THAN COLUMN): ")))
+        except (ValueError):
+            print("PLEASE ENTER A DIGIT ONLY")
+            continue
         if z > x:
             input("ERROR! Bombs per row cannot exceed number of columns.")
         elif x > 99 or y > 99 or x < 1 or y < 1:
