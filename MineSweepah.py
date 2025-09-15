@@ -3,7 +3,7 @@ from PySweepers import setInitialBoard,customBoardSize,generateGameBoard,moveInt
 from random import randint
 
 clearConsole()
-dS = [(5,5,randint(0,2)),(9,9,randint(0,4)),(14,14,randint(0,5))] # rows, columns, and bombs per row
+dS = [(5,5,randint(1,2)),(9,9,randint(1,4)),(14,14,randint(1,5))] # rows, columns, and bombs per row
 
 while True:
     input("""\n          \n░▒▓██████████████▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓████████▓▒░░▒▓███████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░ \n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░ \n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░ \n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░  ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░ ░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░ \n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░ \n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░       \n░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓█████████████▓▒░░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░ \nHOW TO PLAY MINESWEEPAH!:\n      1. Pick a Difficulty\n      2. Answering Methods:\n        a. F x y => Flag cell (x,y)\n        b. R x y => Reveal cell (x,y)\n        c. U x y => UnFlag cell (x,y)\n      3. If you manage to complete the board without getting the bomb, you win!\n      4. If you picked the bomb, you lose! """)
@@ -59,12 +59,20 @@ while True:
 
     if status == "LOST":
         print("YOU LOST!")
-        again = input("Play again? (Y/N): ").upper().strip()
-        if again != "Y":
+        while True:
+            again = input("Play again? [Y/N]: ").strip().upper()
+            if again in ("Y", "N"):
+                break
+            print("[Y/N] nga sabi eh")
+        if again == "N":
             break
     else:
         print("YOU WIN!")
-        again = input("Play again? (Y/N): ").upper().strip()
-        if again != "Y":
+        while True:
+            again = input("Play again? [Y/N]: ").strip().upper()
+            if again in ("Y", "N"):
+                break
+            print("[Y/N] nga sabi eh")
+        if again == "N":
             break
 # --------------------END OF CODE---------------------

@@ -21,9 +21,9 @@ Run `Minesweepah.py` in a Python 3 environment.
 
 ### 2. Choose Difficulty
 Select from:
-- `[1] Easy` → 5×5 board, 0–2 bombs per row
-- `[2] Medium` → 9×9 board, 0–4 bombs per row
-- `[3] Hard` → 14×14 board, 0–5 bombs per row
+- `[1] Easy` → 5×5 board, 1–2 bombs per row
+- `[2] Medium` → 9×9 board, 1–4 bombs per row
+- `[3] Hard` → 14×14 board, 1–5 bombs per row
 - `[4] Custom` → User-defined board size and bomb density
 
 ### 3. Enter Moves

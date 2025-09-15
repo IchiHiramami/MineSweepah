@@ -40,37 +40,25 @@ def generateGameBoard(gB: list, setting: tuple):
     """
     Assign placement of bomb in Game Board (System). 
     In assignemnt, bombs are randomly assigned a tile given the difficulty setting. First two rows and first column are not included in the assignment map. 
-    For every tile that is not a bomb, check left and right for bomb. Then up and down. Highest possible number is 4
+    For every tile that is not a bomb, check all 8 adjacent tiles for bomb. Maximum is 8. This method uses a relative direction
     For table cleanup, all integers (except the frozen row and column) are converted to string and padded using .center()
     """
     # bomb assignment
     for row in gB[2:]:
         for _ in range(setting[2]):
             row[(random.randint(1, len(row)-1))] = " * "
-
-        # horizontal check
-        for i in range(1, len(row)):
-            if row[i] != " * ":
-                left = (i-1) >= 0 and row[i-1] == " * "           
-                right = (i+1) < len(row) and row[i+1] == " * "   
-                
-                if left and right:
-                    row[i] = 2
-                elif left or right:
-                    row[i] = 1
-                else:
-                    row[i] = 0
-
-    # vertical check
+    # 8 way bomb check
     for row in range(2, len(gB)):
         for column in range(1, len(gB[row])):
-            if isinstance(gB[row][column], int):    
-                if gB[row - 1][column] == " * ":
-                    gB[row][column] += 1
-                if row + 1 < len(gB) and gB[row + 1][column] == " * ":
-                    gB[row][column] += 1
-
-    # pad integer values to 3 characters
+            if gB[row][column] != " * ":
+                count = 0
+                for dRow, dColumn in [(-1,0),(1,0),(0,-1),(0,1),(-1,1),(1,1),(-1,-1),(1,-1)]: # relative direction, where (x,y)
+                    newRow, newColumn = row + dRow, column + dColumn
+                    if 2 <= newRow < len(gB) and 1 <= newColumn < len(gB[newRow]):
+                        if gB[newRow][newColumn] == " * ":
+                            count += 1
+                gB[row][column] = str(count).center(cellWidth)
+    # pad integer values to 3 characters => failsafe/ all catch
     for row in range(2, len(gB)):
         for column in range(1, len(gB)-1):
             if isinstance(gB[row][column], int):
@@ -86,7 +74,7 @@ def customBoardSize():
     while True:
         x = int(input("Enter Number of Rows (MAX: 99): "))
         y = int(input("Enter Number of Columns (MAX: 99): "))
-        z = random.randint(0,int(input("Enter Number of Bombs per Row (MUST NOT BE GREATER THAN COLUMN): ")))
+        z = random.randint(1,int(input("Enter Number of Bombs per Row (MUST NOT BE GREATER THAN COLUMN): ")))
         if z > y:
             input("ERROR! Bombs per row cannot exceed number of columns.")
         elif x > 99 or y > 99 or x < 1 or y < 1:
@@ -143,7 +131,7 @@ def moveInterpreter(gB: list, pB: list, m: tuple):
                 if gB[row][column] != " 0 ":
                     continue
 
-                direction = [(-1,0),(1,0),(0,-1),(0,1)]
+                direction = [(-1,0),(1,0),(0,-1),(0,1),(-1,1),(1,1),(1,-1),(-1,-1)]
                 beside = []
                 for dRow, dColumn in direction:
                     r, c = row + dRow, column + dColumn
