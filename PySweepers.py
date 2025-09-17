@@ -1,7 +1,6 @@
 #MineSweepah Modules
 import os, random
 from copy import deepcopy
-from queue import deque
 
 cellWidth = 3
 
@@ -68,14 +67,14 @@ def customBoardSize():
     """
     Allows the user to input custom values for number of rows, columns, and bombs per row.
     For bomb input, assigns a random integer from 0 to user input
-    Returns a tuple of (Column, Row, and Bomb)
+    Returns a tuple of (Column, Row, and Bomb) 
     """
     clearConsole()
     while True:
         try:
             y = int(input("Enter Number of Rows (MAX: 99): "))
             x = int(input("Enter Number of Columns (MAX: 99): "))
-            z = random.randint(1,int(input("Enter Number of Bombs per Row (MUST NOT BE GREATER THAN COLUMN): ")))
+            z = int(input("Enter Number of Bombs per Row (MUST NOT BE GREATER THAN COLUMN): "))
         except (ValueError):
             print("PLEASE ENTER A DIGIT ONLY")
             continue
@@ -85,7 +84,7 @@ def customBoardSize():
             input("ERROR! Rows and columns must be between 1 and 99.")
         else:
             break
-        z
+        z = random.randint(1,z)
     return x, y, z
 
 def showBoard(pB: list):
@@ -121,11 +120,11 @@ def moveInterpreter(gB: list, pB: list, m: tuple):
             
         elif gBCoordinate == " 0 ":
             checked = set()
-            q = deque()
+            q = []
             q.append((targetRow, targetColumn))
 
             while q:
-                row, column = q.popleft() #FIFO -> similar to pop(0) in lists
+                row, column = q.pop(0)
                 if (row, column) in checked:
                     continue
                 checked.add((row, column))
